@@ -12,17 +12,42 @@ certifi==2024.2.2
     #   requests
 charset-normalizer==3.3.2
     # via requests
+contourpy==1.1.1
+    # via matplotlib
+cycler==0.12.1
+    # via matplotlib
+fonttools==4.50.0
+    # via matplotlib
 idna==3.6
     # via requests
+importlib-resources==6.3.1
+    # via matplotlib
 kaggle==1.6.6
     # via -r requirements.in
+kiwisolver==1.4.5
+    # via matplotlib
+matplotlib==3.7.5
+    # via seaborn
 numpy==1.24.4
-    # via pandas
+    # via
+    #   contourpy
+    #   matplotlib
+    #   pandas
+    #   seaborn
+packaging==24.0
+    # via matplotlib
 pandas==2.0.3
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   seaborn
+pillow==10.2.0
+    # via matplotlib
+pyparsing==3.1.2
+    # via matplotlib
 python-dateutil==2.9.0.post0
     # via
     #   kaggle
+    #   matplotlib
     #   pandas
 python-slugify==8.0.4
     # via kaggle
@@ -30,6 +55,8 @@ pytz==2024.1
     # via pandas
 requests==2.31.0
     # via kaggle
+seaborn==0.13.2
+    # via -r requirements.in
 six==1.16.0
     # via
     #   bleach
@@ -47,3 +74,5 @@ urllib3==2.2.1
     #   requests
 webencodings==0.5.1
     # via bleach
+zipp==3.18.1
+    # via importlib-resources

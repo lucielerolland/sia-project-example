@@ -25,9 +25,10 @@ def load_data_from_kaggle(dataset_producer_name: str, dataset_name: str):
 
 def process_loaded_data_from_kaggle(file_name: str, regressors: list) -> Tuple[pd.DataFrame, list]:
     # Here you would do some processing (reading and merging dataframes, choosing relevant
-    # columns, dealing with missing values and so on), but I'm not the one getting a mark
-    # so I'm just reading an already-cleaned data frame and dropping the race_ethnicity column
-    # as ethnic statistics are forbidden by French law.
+    # columns, dealing with missing values and so on)
+    # so I'm just reading an already-cleaned data frame, dropping the race_ethnicity column
+    # as ethnic statistics are forbidden by French law and preparing my one-hot-encoded variables
+    # for regression.
     data = pd.read_csv(f"data/{file_name}").drop(columns=['race_ethnicity'])
     encoded_data, encoded_variables_names = turn_categorical_variables_to_oh(data, regressors)
 

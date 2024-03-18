@@ -23,16 +23,24 @@ def load_data_from_kaggle(dataset_producer_name: str, dataset_name: str):
     os.remove(f"{dataset_name}.zip")
 
 
-def process_loaded_data_from_kaggle(file_name: str, regressors: list) -> Tuple[pd.DataFrame, list]:
-    # Here you would do some processing (reading and merging dataframes, choosing relevant
-    # columns, dealing with missing values and so on)
-    # so I'm just reading an already-cleaned data frame, dropping the race_ethnicity column
-    # as ethnic statistics are forbidden by French law and preparing my one-hot-encoded variables
-    # for regression.
+def process_loaded_data_from_kaggle(file_name: str, categorical_variable_list: list) -> Tuple[pd.DataFrame, list]:
+    """
+    Reads and processes the kaggle data: drops the race_ethnicity column as ethnic statistics
+    are forbidden by French law and prepares my one-hot-encoded variables for regression.
+    In your case, this kind of function would do some extra processing (reading and
+    merging dataframes, choosing relevant columns, dealing with missing values and so on)
+    :param file_name: str
+        path to the file containing the data
+    :param categorical_variable_list: list
+        list of variables that should be one-hot encoded
+    :return: Tuple[pd.DataFrame, list]
+        a dataframe containing the processed data and a list containing the names of the one-hot encoded
+        variables
+    """
     data = pd.read_csv(f"data/{file_name}").drop(columns=['race_ethnicity'])
-    encoded_data, encoded_variables_names = turn_categorical_variables_to_oh(data, regressors)
+    encoded_data, encoded_variables_names = turn_categorical_variables_to_oh(data, categorical_variable_list)
 
-    for regressor in regressors:
+    for regressor in categorical_variable_list:
         reference_variable = [
             value for value in data[regressor].unique()
             if f'{regressor}_{value}' not in encoded_data.columns
@@ -61,4 +69,13 @@ def turn_categorical_variables_to_oh(
     one_hot_encoder_names = encoded_data.columns
 
     return encoded_data, one_hot_encoder_names
+
+
+def random_function_for_show(x1,x2):
+    """
+    This is
+    :param x1:
+    :param x2:
+    :return:
+    """
 
